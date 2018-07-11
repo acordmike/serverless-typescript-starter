@@ -1,0 +1,49 @@
+{
+  "name": "serverless-typescript-starter",
+  "version": "0.0.1",
+  "description": "A starter solution for a Serverless application using TypeScript, AWS Lambda and Jest",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "tslint -p tsconfig.json",
+    "start": "sls offline start",
+    "build": "tsc",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.268.1"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.7",
+    "@types/jest": "^23.1.5",
+    "@types/node": "^10.5.1",
+    "jest": "^23.2.0",
+    "prettier": "^1.13.7",
+    "serverless": "^1.27.3",
+    "serverless-offline": "^3.25.5",
+    "serverless-webpack": "^5.1.5",
+    "ts-jest": "^23.0.0",
+    "ts-loader": "^4.4.2",
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.13.0",
+    "typescript": "^2.9.2",
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "webpack": "^4.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acordmike/serverless-typescript-starter.git"
+  },
+  "keywords": [
+    "serverless",
+    "lambda",
+    "typescript",
+    "jest"
+  ],
+  "author": "Mike Acord",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/acordmike/serverless-typescript-starter/issues"
+  },
+  "homepage": "https://github.com/acordmike/serverless-typescript-starter#readme"
+}
