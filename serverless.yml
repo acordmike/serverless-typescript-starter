@@ -20,6 +20,7 @@ service: serverless-typescript-starter # NOTE: update this with your service nam
 provider:
   name: aws
   runtime: nodejs8.10
+  memorySize: 128 # Overwrite the default memory size. Default is 1024
 
 # you can overwrite defaults here
 #  stage: dev
@@ -55,37 +56,19 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: src/index.handler
+  index:
+    handler: src/handler.getHandler
+    events:
+      - http:
+          path: /
+          method: get
+  error:
+    handler: src/handler.errorHandler
+    events:
+      - http:
+          path: /error
+          method: get
 
-#    The following are a few example events you can configure
-#    NOTE: Please make sure to change your handler code to work with those events
-#    Check the event documentation for details
-#    events:
-#      - http:
-#          path: users/create
-#          method: get
-#      - s3: ${env:BUCKET}
-#      - schedule: rate(10 minutes)
-#      - sns: greeter-topic
-#      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
-#      - alexaSkill
-#      - alexaSmartHome: amzn1.ask.skill.xx-xx-xx-xx
-#      - iot:
-#          sql: "SELECT * FROM 'some_topic'"
-#      - cloudwatchEvent:
-#          event:
-#            source:
-#              - "aws.ec2"
-#            detail-type:
-#              - "EC2 Instance State-change Notification"
-#            detail:
-#              state:
-#                - pending
-#      - cloudwatchLog: '/aws/lambda/hello'
-#      - cognitoUserPool:
-#          pool: MyUserPool
-#          trigger: PreSignUp
 
 #    Define function environment variables here
 #    environment:
@@ -103,6 +86,7 @@ functions:
 #       Description: "Description for the output"
 #       Value: "Some output value"
 
+# packaging individuall will cause a longer deploy, but functions will be smaller
 package:
   individually: true
 
@@ -114,4 +98,4 @@ custom:
   webpack:
     includeModules:
       forceExclude:
-        - aws-sdk
+        - aws-sdk # aws-sdk is included in lambda environment, do not add to package
